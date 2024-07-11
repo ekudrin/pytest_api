@@ -8,7 +8,6 @@ BASE_URL = 'https://reqres.in'
 def test_get_list_users_status_code():
     page_id = random.randint(1, 2)
     response = get_list_users(page_id)
-    print(response)
     assert response.status_code == 200
 
 
@@ -19,10 +18,8 @@ def test_check_users_id():
         assert len(users) == 6
         for user in users:
             if page_id == 1:
-                print(user['id'])
                 assert user['id'] in [1, 2, 3, 4, 5, 6]
             else:
-                print(user['id'])
                 assert user['id'] in [7, 8, 9, 10, 11, 12]
 
 
