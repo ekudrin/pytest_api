@@ -38,9 +38,20 @@ def test_check_user_not_found():
     assert response.status_code == 404
 
 
+def test_delayed_list_users():
+    delay = 2
+    timeout = 3
+    response = get_delayed_list_users(delay, timeout)
+    assert response.status_code == 200
+
+
 def get_list_users(page_id):
     return requests.get(BASE_URL + f"/api/users?page={page_id}")
 
 
 def get_single_user(user_id):
     return requests.get(BASE_URL + f"/api/users/{user_id}")
+
+
+def get_delayed_list_users(delay, expected_timeout):
+    return requests.get(BASE_URL + f"/api/users?delay={delay}", timeout=expected_timeout)
