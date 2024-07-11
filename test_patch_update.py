@@ -7,18 +7,17 @@ from base_test import BASE_URL
 fake = Faker()
 
 
-def test_post_create_response_body():
+def test_patch_update_response_body():
     name = fake.name()
     job = fake.job()
     request_body = base_test.generate_user(name, job)
-
-    response = post_update(request_body)
-    assert response.status_code == 201, "Status code is not valid"
+    response = patch_update(request_body)
+    assert response.status_code == 200
 
     data = response.json()
     assert data['name'] == name
     assert data['job'] == job
 
 
-def post_update(request_body):
-    return requests.post(BASE_URL + "/api/users", json=request_body)
+def patch_update(request_body):
+    return requests.patch(BASE_URL + "/api/users/2", json=request_body)

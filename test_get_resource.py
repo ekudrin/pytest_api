@@ -3,30 +3,28 @@ import string
 
 import requests
 
-BASE_URL = 'https://reqres.in'
+from base_test import BASE_URL
 
 
-def test_get_list_resource_status_code():
+# Tests for List<Resource>, Single<Resource>, Single<Resource>not found
+
+
+def test_get_list_resource_response_body():
     response = get_list_resource()
     assert response.status_code == 200
 
-
-def test_get_list_resource_check_response():
-    response = get_list_resource().json()
-    users = response['data']
+    data = response.json()
+    users = data['data']
     assert len(users) == 6
 
 
-def test_get_single_resource_status_code():
+def test_get_single_resource_responce_body():
     resource_id = random.randint(1, 12)
     response = get_single_resource(resource_id)
     assert response.status_code == 200
 
-
-def test_get_single_resource_check_id():
-    resource_id = random.randint(1, 12)
-    response = get_single_resource(resource_id).json()
-    assert response['data']['id'] == resource_id
+    data = response.json()
+    assert data['data']['id'] == resource_id
 
 
 def test_get_single_resource_not_found():

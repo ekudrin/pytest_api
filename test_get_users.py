@@ -1,20 +1,16 @@
 import random
-
 import requests
 
-BASE_URL = 'https://reqres.in'
+from base_test import BASE_URL
 
 
-def test_get_list_users_status_code():
-    page_id = random.randint(1, 2)
-    response = get_list_users(page_id)
-    assert response.status_code == 200
+# Tests for List users, Single user, Single user not found
 
-
-def test_check_users_id():
+def test_get_list_users_check_users_id():
     for page_id in range(1, 3):
-        response = get_list_users(page_id).json()
-        users = response['data']
+        response = get_list_users(page_id)
+        data = response.json()
+        users = data['data']
         assert len(users) == 6
         for user in users:
             if page_id == 1:
@@ -29,10 +25,11 @@ def test_get_single_user_status_code():
     assert response.status_code == 200
 
 
-def test_check_user_id():
+def test_get_single_user_check_user_id():
     user_id = random.randint(1, 12)
-    response = get_single_user(user_id).json()
-    assert user_id == response['data']['id']
+    response = get_single_user(user_id)
+    data = response.json()
+    assert user_id == data['data']['id']
 
 
 def test_check_user_not_found():
