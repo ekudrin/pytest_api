@@ -15,7 +15,7 @@ def test_delete_response_body():
     job = fake.job()
     request_body = base_test.generate_user(name, job)
     response = delete_user(request_body, user_id)
-    assert response.status_code == 204
+    assert response.status_code == 204, "Invalid status code"
 
 
 def delete_user(request_body, user_id):

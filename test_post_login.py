@@ -16,7 +16,7 @@ def test_post_login_response_body():
     assert response.status_code == 200, "Status code is not valid"
 
     data = response.json()
-    assert data['token'] is not None
+    assert data['token'] is not None, "Invalid data value"
 
 
 def test_post_login_invalid_user():
@@ -28,7 +28,7 @@ def test_post_login_invalid_user():
     assert response.status_code == 400, "Status code is not valid"
 
     data = response.json()
-    assert data['error'] == "user not found"
+    assert data['error'] == "user not found", "Invalid error message"
 
 
 def test_post_login_request_without_password():
@@ -40,7 +40,7 @@ def test_post_login_request_without_password():
     assert response.status_code == 400, "Status code is not valid"
 
     data = response.json()
-    assert data['error'] == "Missing password"
+    assert data['error'] == "Missing password", "Invalid error message"
 
 
 def test_post_login_request_without_email():
@@ -52,7 +52,7 @@ def test_post_login_request_without_email():
     assert response.status_code == 400, "Status code is not valid"
 
     data = response.json()
-    assert data['error'] == "Missing email or username"
+    assert data['error'] == "Missing email or username", "Invalid error message"
 
 
 def post_login(request_body):

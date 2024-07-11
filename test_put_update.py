@@ -16,8 +16,8 @@ def test_put_update_response_body():
     response = put_update(request_body, user_id)
     data = response.json()
     assert response.status_code == 200
-    assert data['name'] == name
-    assert data['job'] == job
+    assert data['name'] == name, "Invalid name value"
+    assert data['job'] == job, "Invalid job value"
 
 
 def generate_put_update_request(name, job):

@@ -16,8 +16,8 @@ def test_post_create_response_body():
     assert response.status_code == 201, "Status code is not valid"
 
     data = response.json()
-    assert data['name'] == name
-    assert data['job'] == job
+    assert data['name'] == name, "Invalid name value"
+    assert data['job'] == job, "Invalid job value"
 
 
 def post_update(request_body):

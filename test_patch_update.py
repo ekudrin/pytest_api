@@ -12,11 +12,11 @@ def test_patch_update_response_body():
     job = fake.job()
     request_body = base_test.generate_user(name, job)
     response = patch_update(request_body)
-    assert response.status_code == 200
+    assert response.status_code == 200, "Invalid status code"
 
     data = response.json()
-    assert data['name'] == name
-    assert data['job'] == job
+    assert data['name'] == name, "Invalid name value"
+    assert data['job'] == job, "Invalid job value"
 
 
 def patch_update(request_body):

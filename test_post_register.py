@@ -29,7 +29,7 @@ def test_post_register_invalid_user():
     assert response.status_code == 400, "Status code is not valid"
 
     data = response.json()
-    assert data['error'] == "Note: Only defined users succeed registration"
+    assert data['error'] == "Note: Only defined users succeed registration", "Invalid error message"
 
 
 def test_post_register_request_without_password():
@@ -41,7 +41,7 @@ def test_post_register_request_without_password():
     assert response.status_code == 400, "Status code is not valid"
 
     data = response.json()
-    assert data['error'] == "Missing password"
+    assert data['error'] == "Missing password", "Invalid error message"
 
 
 def test_post_register_request_without_email():
@@ -53,7 +53,7 @@ def test_post_register_request_without_email():
     assert response.status_code == 400, "Status code is not valid"
 
     data = response.json()
-    assert data['error'] == "Missing email or username"
+    assert data['error'] == "Missing email or username", "Invalid error message"
 
 
 def post_register(request_body):
